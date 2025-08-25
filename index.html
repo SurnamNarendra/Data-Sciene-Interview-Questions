@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Science Interview Questions</title>
+  <meta name="description" content="A clean, responsive website of data science interview questions with filters, search, and expandable answers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #121a2b;
+      --muted: #7d8aaa;
+      --text: #e8ecf6;
+      --ring: #7aa2ff;
+      --accent: #84d361;
+      --accent-2: #58c4c8;
+      --danger: #ff6b6b;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    :root[data-theme="light"] {
+      --bg: #f7fafc;
+      --card: #ffffff;
+      --muted: #5b6876;
+      --text: #0b1220;
+      --ring: #3b82f6;
+      --accent: #16a34a;
+      --accent-2: #0ea5e9;
+      --danger: #dc2626;
+      --shadow: 0 10px 30px rgba(13, 20, 35, .08);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(122,162,255,.25), transparent 60%),
+                  radial-gradient(900px 600px at -10% 10%, rgba(88,196,200,.18), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--bg) 88%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 18px 20px; }
+    .brand {
+      display: flex; gap: 12px; align-items: center;
+      font-weight: 700; letter-spacing: .2px; font-size: 1.05rem;
+    }
+    .badge { padding: 4px 10px; border-radius: 999px; background: var(--card); color: var(--muted); border: 1px solid color-mix(in oklab, var(--text) 12%, transparent); }
+    .toolbar { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .search {
+      position: relative; flex: 1 1 440px; min-width: 240px;
+    }
+    .search input {
+      width: 100%; padding: 12px 40px 12px 40px; border-radius: 12px;
+      background: var(--card); color: var(--text);
+      border: 1px solid color-mix(in oklab, var(--text) 14%, transparent);
+      box-shadow: var(--shadow);
+    }
+    .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: .7; }
+    .search .clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); border: none; background: transparent; color: var(--muted); cursor: pointer; font-size: 18px; }
+    .select, .chip {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px;
+      background: var(--card); color: var(--text);
+      border: 1px solid color-mix(in oklab, var(--text) 14%, transparent);
+      box-shadow: var(--shadow);
+    }
+    select, button, summary { font: inherit; }
+    select { background: transparent; color: inherit; border: none; outline: none; cursor: pointer; }
+    .chip input { accent-color: var(--ring); }
+    .btn {
+      padding: 10px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--text) 14%, transparent);
+      background: linear-gradient(180deg, color-mix(in oklab, var(--ring) 24%, transparent), transparent);
+      color: var(--text); cursor: pointer; box-shadow: var(--shadow);
+    }
+    .btn.primary { background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 36%, transparent), transparent); }
+    .btn.ghost { background: var(--card); }
+    .btn.danger { background: linear-gradient(180deg, color-mix(in oklab, var(--danger) 36%, transparent), transparent); }
+    .grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+    @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1060px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+    .card {
+      background: var(--card);
+      border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      border-radius: 16px; padding: 16px; box-shadow: var(--shadow);
+      display: grid; gap: 10px; align-content: start;
+    }
+    .meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .pill { font-size: .8rem; padding: 4px 8px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--text) 18%, transparent); color: var(--muted); }
+    .q { font-weight: 600; font-size: 1rem; }
+    details { border-top: 1px dashed color-mix(in oklab, var(--text) 18%, transparent); padding-top: 8px; }
+    details[open] summary .caret { transform: rotate(90deg); }
+    summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--muted); }
+    summary::-webkit-details-marker { display: none; }
+    .actions { display: flex; gap: 8px; }
+    .footer { text-align: center; color: var(--muted); padding: 30px 0 60px; }
+    .count { color: var(--muted); font-size: .95rem; }
+    .kbd { border: 1px solid color-mix(in oklab, var(--text) 18%, transparent); padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: .85em; color: var(--muted); }
+    .bookmark { border-color: color-mix(in oklab, var(--accent) 40%, var(--text) 18%); color: color-mix(in oklab, var(--accent) 60%, var(--text)); }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="row" style="justify-content: space-between;">
+        <div class="brand" aria-label="Site brand">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7a8 8 0 1 0 16 0" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="7" r="3" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Data Science Interview Hub</span>
+          <span class="badge" title="Open-source">v1.0</span>
+        </div>
+        <div class="row">
+          <button id="themeBtn" class="btn ghost" title="Toggle theme (L)">Toggle theme <span class="kbd">L</span></button>
+          <button id="printBtn" class="btn" title="Print selected (P)">Print <span class="kbd">P</span></button>
+          <button id="exportBtn" class="btn" title="Export filtered as JSON">Export</button>
+          <button id="resetBtn" class="btn danger" title="Reset filters">Reset</button>
+        </div>
+      </div>
+      <div class="toolbar" style="margin-top: 12px;">
+        <div class="row">
+          <div class="search" role="search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2"/></svg>
+            <input id="search" placeholder="Search by keyword (regex ok) e.g. ^bias|variance$" aria-label="Search questions" />
+            <button class="clear" id="clearSearch" aria-label="Clear search">×</button>
+          </div>
+          <div class="select" title="Filter by difficulty">
+            <span>Difficulty</span>
+            <select id="difficulty">
+              <option value="all">All</option>
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </select>
+          </div>
+          <div class="select" title="Sort results">
+            <span>Sort</span>
+            <select id="sort">
+              <option value="default">Default</option>
+              <option value="difficulty">Difficulty</option>
+              <option value="topic">Topic</option>
+              <option value="alpha">A → Z</option>
+            </select>
+          </div>
+          <button id="shuffleBtn" class="btn ghost" title="Shuffle (S)">Shuffle <span class="kbd">S</span></button>
+          <div class="chip" title="Show only bookmarks">
+            <input type="checkbox" id="onlyBookmarks" /> <label for="onlyBookmarks">Bookmarks</label>
+          </div>
+        </div>
+        <div class="row" id="topicChips" aria-label="Topic filters" style="flex-wrap: wrap"></div>
+        <div class="count" id="count"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid" id="grid" aria-live="polite"></section>
+    <p class="footer">Pro tip: press <span class="kbd">L</span> to toggle theme, <span class="kbd">S</span> to shuffle, and <span class="kbd">/</span> to focus search.</p>
+  </main>
+
+  <template id="cardTemplate">
+    <article class="card" data-id="">
+      <div class="meta">
+        <span class="pill topic"></span>
+        <span class="pill difficulty"></span>
+        <span class="pill time"></span>
+      </div>
+      <label class="chip" style="margin-left:auto;">
+        <input type="checkbox" class="selectPrint" /> Select
+      </label>
+      <div class="q"></div>
+      <details>
+        <summary><span class="caret">▶</span> Show answer</summary>
+        <div class="a"></div>
+      </details>
+      <div class="actions">
+        <button class="btn ghost copyBtn" aria-label="Copy Q&A">Copy</button>
+        <button class="btn ghost bookmarkBtn" aria-label="Bookmark">☆ Save</button>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    const el = (sel, root=document) => root.querySelector(sel);
+    const els = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+    const QUESTIONS = [
+      // --- Statistics & Probability ---
+      { id: 'q1', topic: 'Statistics', difficulty: 'Easy', time: '1–2 min',
+        q: 'Explain the difference between population and sample. Why does it matter for inference?',
+        a: 'A population contains all units of interest; a sample is a subset used to estimate population parameters. Inference relies on randomness/representativeness: unbiased sampling lets sample statistics (e.g., mean, variance) be consistent estimators of population parameters with quantifiable uncertainty (SE, CIs). Using a sample improperly can introduce sampling bias and invalidate p-values/intervals.' },
+      { id: 'q2', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+        q: 'What is the bias–variance tradeoff and how does it influence model selection?',
+        a: 'Bias is systematic error from underfitting; variance is sensitivity to training data from overfitting. Total expected error = bias^2 + variance + irreducible noise. Choose models/regularization that minimize validation error—e.g., cross-validation to tune complexity (λ, depth, k) balancing under/overfit.' },
+      { id: 'q3', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+        q: 'You flip a fair coin until two heads in a row appear. What is the expected number of flips?',
+        a: 'Let E be expectation from scratch; E_H after one head, E_T after tail. Equations: E = 1 + 0.5 E_H + 0.5 E; E_H = 1 + 0.5·0 + 0.5 E; Solve → E = 6. Expected flips = 6.' },
+
+      // --- Machine Learning ---
+      { id: 'q4', topic: 'Machine Learning', difficulty: 'Medium', time: '3–4 min',
+        q: 'Compare L1 and L2 regularization. When would you prefer each?',
+        a: 'L1 (Lasso) adds |w| penalty → sparsity, feature selection, robust to outliers; L2 (Ridge) adds w² penalty → shrinks weights, handles multicollinearity, better when many weak features. Elastic Net mixes both.' },
+      { id: 'q5', topic: 'Machine Learning', difficulty: 'Hard', time: '4–6 min',
+        q: 'How do you detect and handle data leakage?',
+        a: 'Leakage occurs when features include information unavailable at prediction time (e.g., future timestamps, target-encoding before split). Detect with time-aware splits, auditing feature lineage, model-permutation/SHAP sanity checks, and performance drop in forward-chaining CV. Prevent by strict train/val separation, pipelines that fit only on train, and freezing targets/encodings post split.' },
+      { id: 'q6', topic: 'Machine Learning', difficulty: 'Medium', time: '2–4 min',
+        q: 'Explain precision, recall, F1, ROC-AUC, and PR-AUC. When prefer PR-AUC?',
+        a: 'Precision = TP/(TP+FP), recall = TP/(TP+FN), F1 = harmonic mean. ROC-AUC compares TPR vs FPR; insensitive to prevalence. PR-AUC is better for heavy class imbalance because it focuses on precision vs recall among positives.' },
+
+      // --- Deep Learning ---
+      { id: 'q7', topic: 'Deep Learning', difficulty: 'Medium', time: '3–4 min',
+        q: 'What is batch normalization and why can it help training?',
+        a: 'It normalizes layer activations to zero mean/unit variance per mini-batch, then learns scale/shift. It stabilizes gradients, allows higher learning rates, and acts as regularizer. During inference use running averages.' },
+      { id: 'q8', topic: 'Deep Learning', difficulty: 'Hard', time: '5–7 min',
+        q: 'Describe attention mechanisms and why they outperform RNNs on many sequence tasks.',
+        a: 'Attention computes context as a weighted sum of values using query–key similarity, enabling parallelism and long-range dependencies without vanishing gradients. Transformers stack self-attention + feed-forward layers; they scale better and capture global context.' },
+
+      // --- Python & SQL ---
+      { id: 'q9', topic: 'Python', difficulty: 'Easy', time: '1–2 min',
+        q: 'What is the difference between a list, tuple, and generator in Python?',
+        a: 'List: mutable sequence in memory; tuple: immutable, hashable if items hashable; generator: lazy iterator producing items on demand, constant memory.' },
+      { id: 'q10', topic: 'SQL', difficulty: 'Medium', time: '2–3 min',
+        q: 'Explain LEFT JOIN vs INNER JOIN. When might LEFT JOIN change row counts?',
+        a: 'INNER JOIN keeps only matches; LEFT JOIN preserves all left rows with NULLs for non-matches. Row counts can increase with one-to-many relationships unless deduplicated or aggregated.' },
+      { id: 'q11', topic: 'SQL', difficulty: 'Hard', time: '4–6 min',
+        q: 'How do you detect slow queries and optimize them?',
+        a: 'Use EXPLAIN/EXPLAIN ANALYZE, check indexes/selectivity, avoid functions on indexed columns, reduce row scans via predicates, pushdowns, and covering indexes; rewrite subqueries as joins or window functions when appropriate; profile cache/I/O; consider partitioning and materialized views.' },
+
+      // --- Experimentation & Causality ---
+      { id: 'q12', topic: 'A/B Testing', difficulty: 'Medium', time: '3–5 min',
+        q: 'What is power in hypothesis testing and how do you increase it for an A/B test?',
+        a: 'Power = 1 − β, probability to detect a true effect. Increase by larger sample size, lower variance (better metrics/stratification), larger effect, higher α (with caution), or using sequential/Bayesian designs.' },
+      { id: 'q13', topic: 'Causality', difficulty: 'Hard', time: '5–7 min',
+        q: 'How would you estimate causal impact from observational data?',
+        a: 'Use identification strategies: backdoor adjustment with DAGs, matching/propensity scores, inverse probability weighting, difference-in-differences, synthetic control, instrumental variables. Validate with balance checks and sensitivity analyses.' },
+
+      // --- MLOps ---
+      { id: 'q14', topic: 'MLOps', difficulty: 'Medium', time: '3–5 min',
+        q: 'Outline a robust ML pipeline from data to deployment.',
+        a: 'Steps: data versioning; feature engineering with reproducible pipelines; train/val/test split; hyperparameter tuning; model registry; CI for tests; containerization; offline/online eval; shadow or canary deploy; monitoring for performance/data drift; rollback strategy.' },
+      { id: 'q15', topic: 'MLOps', difficulty: 'Medium', time: '2–4 min',
+        q: 'What is concept drift, and how do you monitor and remediate it?',
+        a: 'Concept drift: change in P(y|x). Monitor with performance metrics over time, PSI/JS/Wasserstein on posteriors, and drift detectors. Remediate with re-training, online learning, feature recalibration, or model switchovers.' },
+
+      // --- Visualization & Product ---
+      { id: 'q16', topic: 'Visualization', difficulty: 'Easy', time: '1–2 min',
+        q: 'When is a heatmap preferable to a scatter plot?',
+        a: 'For dense 2D distributions with heavy overplotting; heatmaps (or hex bins) reveal structure by aggregating counts or values per cell.' },
+      { id: 'q17', topic: 'Product Sense', difficulty: 'Medium', time: '3–4 min',
+        q: 'Design a metric to measure the success of a search ranking change.',
+        a: 'Define north-star (e.g., success rate or revenue per search), guardrails (latency, abuse, fairness), user-centered metrics (CTR@k, SAT clicks), and run an A/B test with segment analysis and long-term holdouts.' },
+
+      // --- Case/Practical ---
+      { id: 'q18', topic: 'Case Study', difficulty: 'Hard', time: '6–10 min',
+        q: 'Your churn model degrades after a pricing change. How do you respond?',
+        a: 'Audit data schema and label definitions post-change; check drift on key features/targets; rebaseline with recent cohort; update features sensitive to price (discounts, tenure); compare calibration; consider segmented models; run counterfactual analyses to separate behavior vs pricing effects; roll out with canary and watch guardrails.' },
+
+      // --- Ethics ---
+      { id: 'q19', topic: 'Ethics', difficulty: 'Medium', time: '2–3 min',
+        q: 'How do you assess fairness in a binary classifier?',
+        a: 'Choose fairness notion per context: demographic parity, equalized odds/opportunity, calibration. Compute per-group metrics; analyze trade-offs and perform bias mitigation (reweighing, thresholding, representation learning) with stakeholder input and impact assessment.' },
+
+      // --- Bonus ---
+      { id: 'q20', topic: 'Algorithms', difficulty: 'Medium', time: '2–4 min',
+        q: 'Explain time vs space complexity trade-offs in feature engineering.',
+        a: 'Examples: hashing trick reduces memory vs explicit one-hot; precomputing aggregates speeds training but increases storage; approximate methods (Count-Min Sketch) trade exactness for O(1) updates and sub-linear memory.' },
+    ];
+
+    // --- State ---
+    const state = {
+      search: '',
+      difficulty: 'all',
+      topics: new Set(),
+      sort: 'default',
+      onlyBookmarks: false,
+      bookmarks: new Set(JSON.parse(localStorage.getItem('dsih_bookmarks')||'[]')),
+      theme: localStorage.getItem('dsih_theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'),
+    };
+    document.documentElement.dataset.theme = state.theme;
+
+    // --- Render topic chips ---
+    const topics = [...new Set(QUESTIONS.map(q=>q.topic))].sort();
+    const topicChips = el('#topicChips');
+    topics.forEach(t => {
+      const chip = document.createElement('label');
+      chip.className = 'chip';
+      chip.innerHTML = `<input type="checkbox" value="${t}"> ${t}`;
+      chip.querySelector('input').addEventListener('change', (e)=>{
+        if(e.target.checked) state.topics.add(t); else state.topics.delete(t);
+        render();
+      });
+      topicChips.appendChild(chip);
+    });
+
+    // --- Helpers ---
+    const difficultyRank = { Easy: 1, Medium: 2, Hard: 3 };
+
+    function filtered() {
+      let list = QUESTIONS.filter(item => {
+        const matchTopic = state.topics.size ? state.topics.has(item.topic) : true;
+        const matchDiff = state.difficulty === 'all' ? true : item.difficulty === state.difficulty;
+        const matchBookmarks = state.onlyBookmarks ? state.bookmarks.has(item.id) : true;
+        let matchSearch = true;
+        if (state.search) {
+          try {
+            const rx = new RegExp(state.search, 'i');
+            matchSearch = rx.test(item.q) || rx.test(item.a) || rx.test(item.topic);
+          } catch (e) {
+            matchSearch = (item.q + item.a + item.topic).toLowerCase().includes(state.search.toLowerCase());
+          }
+        }
+        return matchTopic && matchDiff && matchBookmarks && matchSearch;
+      });
+
+      switch(state.sort){
+        case 'difficulty': list.sort((a,b)=> difficultyRank[a.difficulty]-difficultyRank[b.difficulty]); break;
+        case 'topic': list.sort((a,b)=> a.topic.localeCompare(b.topic)); break;
+        case 'alpha': list.sort((a,b)=> a.q.localeCompare(b.q)); break;
+        default: break;
+      }
+      return list;
+    }
+
+    function render(){
+      const list = filtered();
+      el('#count').textContent = `${list.length} results · ${state.topics.size ? [...state.topics].join(', ') : 'All topics'} · ${state.difficulty} difficulty`;
+      const grid = el('#grid');
+      grid.innerHTML = '';
+      list.forEach(item => grid.appendChild(cardFor(item)));
+    }
+
+    function cardFor(item){
+      const tpl = el('#cardTemplate');
+      const node = tpl.content.firstElementChild.cloneNode(true);
+      node.dataset.id = item.id;
+      el('.topic', node).textContent = item.topic;
+      el('.difficulty', node).textContent = item.difficulty;
+      el('.time', node).textContent = item.time;
+      el('.q', node).textContent = item.q;
+      el('.a', node).textContent = item.a;
+
+      const select = el('.selectPrint', node);
+      select.addEventListener('change', ()=> node.classList.toggle('bookmark', select.checked));
+
+      const copyBtn = el('.copyBtn', node);
+      copyBtn.addEventListener('click', async ()=>{
+        const text = `Q: ${item.q}\nA: ${item.a}`;
+        try { await navigator.clipboard.writeText(text); copyBtn.textContent = 'Copied!'; setTimeout(()=> copyBtn.textContent = 'Copy', 1200);} catch {}
+      });
+
+      const bmBtn = el('.bookmarkBtn', node);
+      const updateBm = () => {
+        if(state.bookmarks.has(item.id)) { bmBtn.textContent = '★ Saved'; node.classList.add('bookmark'); }
+        else { bmBtn.textContent = '☆ Save'; node.classList.remove('bookmark'); }
+      };
+      updateBm();
+      bmBtn.addEventListener('click', ()=>{
+        if(state.bookmarks.has(item.id)) state.bookmarks.delete(item.id); else state.bookmarks.add(item.id);
+        localStorage.setItem('dsih_bookmarks', JSON.stringify([...state.bookmarks]));
+        updateBm();
+      });
+
+      return node;
+    }
+
+    // --- Events ---
+    el('#search').addEventListener('input', (e)=>{ state.search = e.target.value.trim(); render(); });
+    el('#clearSearch').addEventListener('click', ()=>{ el('#search').value=''; state.search=''; render(); });
+    el('#difficulty').addEventListener('change', (e)=>{ state.difficulty = e.target.value; render(); });
+    el('#sort').addEventListener('change', (e)=>{ state.sort = e.target.value; render(); });
+    el('#onlyBookmarks').addEventListener('change', (e)=>{ state.onlyBookmarks = e.target.checked; render(); });
+
+    el('#shuffleBtn').addEventListener('click', ()=>{ QUESTIONS.sort(()=>Math.random()-.5); render(); });
+    el('#resetBtn').addEventListener('click', ()=>{
+      state.search=''; el('#search').value='';
+      state.difficulty='all'; el('#difficulty').value='all';
+      state.sort='default'; el('#sort').value='default';
+      state.topics.clear(); els('#topicChips input').forEach(i=> i.checked=false);
+      state.onlyBookmarks=false; el('#onlyBookmarks').checked=false;
+      render();
+    });
+
+    el('#themeBtn').addEventListener('click', ()=> toggleTheme());
+    function toggleTheme(){
+      state.theme = (state.theme === 'dark') ? 'light' : 'dark';
+      document.documentElement.dataset.theme = state.theme;
+      localStorage.setItem('dsih_theme', state.theme);
+    }
+
+    // Keyboard shortcuts
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'l' || e.key === 'L') toggleTheme();
+      if(e.key === 's' || e.key === 'S') el('#shuffleBtn').click();
+      if(e.key === 'p' || e.key === 'P') el('#printBtn').click();
+      if(e.key === '/') { e.preventDefault(); el('#search').focus(); }
+    });
+
+    // Print & export
+    el('#printBtn').addEventListener('click', ()=>{
+      const selected = els('.selectPrint:checked').map(cb => cb.closest('.card'));
+      if (selected.length === 0) return window.print();
+      // Temporarily hide unselected
+      const all = els('.card');
+      all.forEach(c=> c.classList.add('hidden'));
+      selected.forEach(c=> c.classList.remove('hidden'));
+      window.print();
+      all.forEach(c=> c.classList.remove('hidden'));
+    });
+
+    el('#exportBtn').addEventListener('click', ()=>{
+      const data = filtered();
+      const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'ds-questions.json'; a.click();
+      setTimeout(()=> URL.revokeObjectURL(url), 1000);
+    });
+
+    // Initial render
+    render();
+  </script>
+</body>
+</html>
