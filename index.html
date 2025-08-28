@@ -203,6 +203,206 @@
       { id: 'q3', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
         q: 'You flip a fair coin until two heads in a row appear. What is the expected number of flips?',
         a: 'Let E be expectation from scratch; E_H after one head, E_T after tail. Equations: E = 1 + 0.5 E_H + 0.5 E; E_H = 1 + 0.5·0 + 0.5 E; Solve → E = 6. Expected flips = 6.' },
+// --- Statistics & Probability ---
+{ id: 'q4', topic: 'Statistics', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is the difference between descriptive and inferential statistics?',
+  a: 'Descriptive statistics summarize and describe data (mean, median, variance, plots). Inferential statistics use samples to make generalizations about populations, relying on probability (e.g., hypothesis testing, confidence intervals).' },
+
+{ id: 'q5', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'Define conditional probability and give a real-life example.',
+  a: 'Conditional probability is P(A|B) = P(A ∩ B)/P(B). Example: Probability a person has diabetes given obesity. It quantifies likelihood of A given information about B.' },
+
+{ id: 'q6', topic: 'Statistics', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is the Central Limit Theorem (CLT) and why is it important?',
+  a: 'The CLT states that the sampling distribution of the sample mean approaches normality as n→∞, regardless of population distribution (if variance finite). It enables inference via z/t-tests, CIs, etc.' },
+
+{ id: 'q7', topic: 'Probability', difficulty: 'Hard', time: '3–5 min',
+  q: 'Two dice are rolled. What is the probability that the sum is divisible by 3?',
+  a: 'Possible sums 2–12. Count favorable: sums {3,6,9,12}. Probabilities: (2,1)=2/36; (6)=5/36; (9)=4/36; (12)=1/36. Total = 12/36 = 1/3.' },
+
+{ id: 'q8', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is p-value in hypothesis testing?',
+  a: 'The p-value is the probability of observing data as extreme or more extreme than sample, given the null hypothesis is true. Small p-value (< α) suggests evidence against H₀.' },
+
+{ id: 'q9', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is Bayes’ Theorem? Provide an example.',
+  a: 'Bayes’ Theorem: P(A|B) = P(B|A)P(A)/P(B). Example: In medical testing, it updates disease probability after positive test using sensitivity, specificity, and prevalence.' },
+
+{ id: 'q10', topic: 'Statistics', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is the law of large numbers?',
+  a: 'As sample size increases, the sample mean converges to the population mean. It justifies why larger samples give more reliable estimates.' },
+
+{ id: 'q11', topic: 'Probability', difficulty: 'Hard', time: '3–4 min',
+  q: 'A box contains 3 red, 4 blue, and 5 green balls. Two balls are drawn without replacement. What is the probability they are the same color?',
+  a: 'Ways: Red: C(3,2)=3; Blue: C(4,2)=6; Green: C(5,2)=10; total =19. Total draws = C(12,2)=66. Probability = 19/66.' },
+
+{ id: 'q12', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'Distinguish between parametric and nonparametric tests.',
+  a: 'Parametric tests assume specific distribution (e.g., t-test assumes normality). Nonparametric tests (Mann-Whitney, Kruskal-Wallis) make fewer assumptions, use ranks, useful for skewed/ordinal data.' },
+
+{ id: 'q13', topic: 'Probability', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is the probability of getting exactly 2 heads in 4 fair coin flips?',
+  a: 'Number of outcomes = 2^4 =16. Favorable = C(4,2)=6. Probability = 6/16=0.375.' },
+
+{ id: 'q14', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'Explain Type I and Type II errors.',
+  a: 'Type I error: reject true H₀ (false positive). Type II error: fail to reject false H₀ (false negative). Significance α controls Type I; power = 1–β controls Type II.' },
+
+{ id: 'q15', topic: 'Probability', difficulty: 'Hard', time: '3–5 min',
+  q: 'A fair coin is tossed repeatedly until a head appears. What is the expected number of tosses?',
+  a: 'Geometric distribution with p=0.5. Expectation = 1/p = 2 tosses.' },
+
+{ id: 'q16', topic: 'Statistics', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is correlation vs causation?',
+  a: 'Correlation quantifies linear association between variables. Causation implies one variable directly affects another. Correlation ≠ causation (may be confounding).' },
+
+{ id: 'q17', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the expected value of rolling a fair six-sided die?',
+  a: 'E = (1+2+3+4+5+6)/6 = 21/6 = 3.5.' },
+
+{ id: 'q18', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is multicollinearity in regression?',
+  a: 'Multicollinearity is when predictors are highly correlated, making coefficient estimates unstable/inflated SEs. Detection: VIF>10. Solution: remove/combine predictors, regularization.' },
+
+{ id: 'q19', topic: 'Probability', difficulty: 'Hard', time: '3–5 min',
+  q: 'Find the probability that in a group of 23 people at least two share the same birthday.',
+  a: 'Classic birthday paradox: P(no match)= (365×364×...×343)/365^23 ≈ 0.4927. So probability ≥1 match ≈ 1–0.4927=0.5073 (~50.7%).' },
+
+{ id: 'q20', topic: 'Statistics', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is standard deviation and what does it measure?',
+  a: 'Standard deviation measures average spread of data from mean. Small SD: values close to mean; large SD: more variability.' },
+
+{ id: 'q21', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the difference between discrete and continuous probability distributions?',
+  a: 'Discrete assigns probabilities to countable outcomes (Binomial, Poisson). Continuous assigns density, probability via area under curve (Normal, Exponential).' },
+
+{ id: 'q22', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is a confidence interval?',
+  a: 'A CI provides a plausible range of values for a population parameter, with confidence level (e.g., 95%). E.g., CI=estimate ± margin of error.' },
+
+{ id: 'q23', topic: 'Probability', difficulty: 'Hard', time: '3–5 min',
+  q: 'If X~Poisson(λ=3), what is P(X=0)?',
+  a: 'P(X=0) = e^(−3)·3^0/0! = e^(−3) ≈ 0.0498.' },
+
+{ id: 'q24', topic: 'Statistics', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is an outlier? How can you detect it?',
+  a: 'An outlier is an observation far from others. Detection: boxplot rule (1.5×IQR), z-score>3, robust methods.' },
+
+{ id: 'q25', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'Explain the concept of independence of events.',
+  a: 'Events A and B are independent if P(A∩B)=P(A)P(B). Knowledge of one does not affect probability of other.' },
+
+{ id: 'q26', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is heteroscedasticity in regression?',
+  a: 'Heteroscedasticity = non-constant variance of errors. It violates OLS assumptions, inflates SEs. Detection: residual plots, Breusch-Pagan test. Fix: log-transform, robust SEs.' },
+
+{ id: 'q27', topic: 'Probability', difficulty: 'Hard', time: '3–5 min',
+  q: 'What is the probability that in 10 coin tosses exactly 5 heads occur?',
+  a: 'Binomial: P= C(10,5)(0.5)^10 = 252/1024 ≈ 0.246.' },
+
+{ id: 'q28', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'Difference between parametric and nonparametric confidence intervals?',
+  a: 'Parametric CI relies on distribution assumptions (z/t-based). Nonparametric (bootstrap CI) resamples data without assumptions.' },
+
+{ id: 'q29', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the variance of a fair die roll?',
+  a: 'E[X]=3.5; E[X²]=(1²+…+6²)/6=91/6≈15.17. Var=E[X²]–E[X]²=15.17–12.25=2.92.' },
+
+{ id: 'q30', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is statistical power?',
+  a: 'Power = P(reject H₀|H₁ true). It measures ability to detect true effect. Increases with sample size, effect size, α.' },
+
+{ id: 'q31', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the expected number of sixes in 60 rolls of a fair die?',
+  a: 'Binomial: n=60, p=1/6. Expectation = np = 60·(1/6)=10.' },
+
+{ id: 'q32', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'Difference between parametric mean imputation and multiple imputation?',
+  a: 'Mean imputation replaces missing with mean, underestimates variance. Multiple imputation generates multiple plausible values, better uncertainty estimates.' },
+
+{ id: 'q33', topic: 'Probability', difficulty: 'Hard', time: '3–5 min',
+  q: 'If cards are drawn from a standard deck, what is the probability the first is an ace and the second is a king (without replacement)?',
+  a: 'P= (4/52)(4/51)=16/2652 ≈ 0.00604.' },
+
+{ id: 'q34', topic: 'Statistics', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is the median and why is it robust?',
+  a: 'Median is middle value of ordered data. Robust because less sensitive to outliers/skewed data than mean.' },
+
+{ id: 'q35', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'If X~N(0,1), what is P(X>1.96)?',
+  a: 'From z-tables, P(Z>1.96)=0.025 (one-sided tail).' },
+
+{ id: 'q36', topic: 'Statistics', difficulty: 'Hard', time: '3–5 min',
+  q: 'Explain maximum likelihood estimation (MLE).',
+  a: 'MLE chooses parameter values that maximize likelihood of observed data. It yields asymptotically unbiased, efficient estimators. Example: Bernoulli with k successes in n trials → p̂=k/n.' },
+
+{ id: 'q37', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the memoryless property of exponential distribution?',
+  a: 'For X~Exp(λ): P(X>s+t|X>s)=P(X>t). Future waiting time independent of past. Unique to exponential.' },
+
+{ id: 'q38', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'Difference between ANOVA and regression?',
+  a: 'ANOVA compares means across groups; regression models relationship between dependent and independent variables. Mathematically, both use linear models.' },
+
+{ id: 'q39', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is covariance and how is it different from correlation?',
+  a: 'Covariance measures joint variability of two variables. Correlation standardizes covariance to (−1,1), unit-free, comparable across scales.' },
+
+{ id: 'q40', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is bootstrapping in statistics?',
+  a: 'Bootstrap resamples data with replacement to estimate sampling distribution of a statistic. Useful for CIs, SEs, when parametric assumptions fail.' },
+
+{ id: 'q41', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the distribution of the sum of two independent normals?',
+  a: 'If X~N(μ₁,σ₁²), Y~N(μ₂,σ₂²), then X+Y ~ N(μ₁+μ₂, σ₁²+σ₂²).' },
+
+{ id: 'q42', topic: 'Statistics', difficulty: 'Hard', time: '3–5 min',
+  q: 'What is the difference between fixed effects and random effects models?',
+  a: 'Fixed effects assume entity-specific intercepts (control for time-invariant characteristics). Random effects assume random variation across entities, uncorrelated with regressors.' },
+
+{ id: 'q43', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is a moment generating function (MGF)?',
+  a: 'MGF: M_X(t)=E[e^{tX}]. Derivatives at t=0 give moments. MGFs characterize distributions uniquely if they exist.' },
+
+{ id: 'q44', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is logistic regression and when do you use it?',
+  a: 'Logistic regression models log-odds of binary outcome as linear in predictors. Used when Y is categorical (yes/no).' },
+
+{ id: 'q45', topic: 'Probability', difficulty: 'Hard', time: '3–5 min',
+  q: 'A fair coin is tossed 5 times. What is the probability of at least 4 heads?',
+  a: 'P= P(4)+P(5) = C(5,4)/32 + C(5,5)/32 = 5/32+1/32=6/32=0.1875.' },
+
+{ id: 'q46', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is survival analysis?',
+  a: 'Survival analysis studies time-to-event data (e.g., failure time, death). Key tools: Kaplan–Meier estimator, Cox proportional hazards model.' },
+
+{ id: 'q47', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the expected value of the minimum of two independent Uniform(0,1) variables?',
+  a: 'F_min(x)=1–(1–x)^2, f_min(x)=2(1–x). E[min]=∫0^1 x·2(1–x)dx=1/3.' },
+
+{ id: 'q48', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is Simpson’s paradox?',
+  a: 'Simpson’s paradox occurs when a trend in subgroups reverses when data combined, often due to confounding variables.' },
+
+{ id: 'q49', topic: 'Probability', difficulty: 'Hard', time: '3–5 min',
+  q: 'For a random variable X~Exponential(λ), find its mean and variance.',
+  a: 'E[X]=1/λ, Var[X]=1/λ².' },
+
+{ id: 'q50', topic: 'Statistics', difficulty: 'Hard', time: '3–5 min',
+  q: 'Explain principal component analysis (PCA).',
+  a: 'PCA transforms correlated variables into uncorrelated components maximizing variance. It reduces dimensionality while retaining most information.' },
+
+{ id: 'q51', topic: 'Probability', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is Markov’s inequality?',
+  a: 'For nonnegative X and a>0: P(X≥a) ≤ E[X]/a. It bounds tail probability with expectation.' },
+
+{ id: 'q52', topic: 'Statistics', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the difference between cross-sectional and time-series data?',
+  a: 'Cross-sectional: multiple subjects at one point. Time-series: one subject over time. Panel: multiple subjects over time.' },
+
+{ id: 'q53', topic: 'Probability', difficulty: 'Hard', time: '3–5 min',
+  q: 'A random variable X has pdf f(x)=2x, 0<x<1. Find its mean.',
+  a: 'E[X]=∫0^1 x·2x dx=∫0^1 2x^2 dx=2/3.' }
 
       // --- Machine Learning ---
       { id: 'q4', topic: 'Machine Learning', difficulty: 'Medium', time: '3–4 min',
@@ -214,6 +414,206 @@
       { id: 'q6', topic: 'Machine Learning', difficulty: 'Medium', time: '2–4 min',
         q: 'Explain precision, recall, F1, ROC-AUC, and PR-AUC. When prefer PR-AUC?',
         a: 'Precision = TP/(TP+FP), recall = TP/(TP+FN), F1 = harmonic mean. ROC-AUC compares TPR vs FPR; insensitive to prevalence. PR-AUC is better for heavy class imbalance because it focuses on precision vs recall among positives.' },
+// --- Machine Learning ---
+{ id: 'q7', topic: 'Machine Learning', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is the difference between supervised, unsupervised, and reinforcement learning?',
+  a: 'Supervised learns from labeled data (classification, regression). Unsupervised learns patterns from unlabeled data (clustering, dimensionality reduction). Reinforcement learning optimizes sequential decisions via reward feedback.' },
+
+{ id: 'q8', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'Why is cross-validation used? How does k-fold differ from leave-one-out?',
+  a: 'Cross-validation estimates generalization. k-fold splits into k parts (train on k-1, validate on 1, rotate). Leave-one-out is k=n folds, high variance but low bias, computationally expensive.' },
+
+{ id: 'q9', topic: 'Machine Learning', difficulty: 'Hard', time: '4–6 min',
+  q: 'How does gradient boosting differ from bagging?',
+  a: 'Bagging builds independent models in parallel (random forests) reducing variance. Boosting builds sequential models correcting previous errors (AdaBoost, XGBoost) reducing bias. Gradient boosting uses gradient descent to minimize loss.' },
+
+{ id: 'q10', topic: 'Machine Learning', difficulty: 'Medium', time: '3–4 min',
+  q: 'Explain overfitting. How can it be reduced?',
+  a: 'Overfitting = model fits noise, poor generalization. Remedies: regularization (L1/L2), cross-validation, early stopping, dropout, pruning, more data, simpler models.' },
+
+{ id: 'q11', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the difference between bagging and random forests?',
+  a: 'Bagging uses bootstrap sampling with aggregation. Random forest adds feature subsampling at each split, decorrelating trees and improving variance reduction.' },
+
+{ id: 'q12', topic: 'Machine Learning', difficulty: 'Hard', time: '5–6 min',
+  q: 'What are the assumptions behind linear regression?',
+  a: 'Linearity, independence, homoscedasticity, normality of residuals, no perfect multicollinearity. Violations → biased/inefficient estimates.' },
+
+{ id: 'q13', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'How do decision trees decide where to split?',
+  a: 'They choose splits that maximize impurity reduction using metrics like Gini impurity, entropy (information gain), or variance reduction.' },
+
+{ id: 'q14', topic: 'Machine Learning', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is bias–variance tradeoff?',
+  a: 'Bias = error from underfitting; variance = error from overfitting. Goal = minimize total error via model complexity tuning.' },
+
+{ id: 'q15', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What are support vector machines (SVMs)?',
+  a: 'SVMs find the hyperplane that maximizes margin between classes. Can use kernels to handle non-linear boundaries.' },
+
+{ id: 'q16', topic: 'Machine Learning', difficulty: 'Hard', time: '4–5 min',
+  q: 'Explain kernel trick in SVMs.',
+  a: 'Kernel trick computes dot products in higher-dimensional feature space without explicit mapping. Allows linear separation in transformed space (RBF, polynomial kernels).' },
+
+{ id: 'q17', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is PCA and why is it used?',
+  a: 'Principal Component Analysis projects data onto orthogonal directions maximizing variance. Used for dimensionality reduction, noise filtering, visualization.' },
+
+{ id: 'q18', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'How does k-means clustering work?',
+  a: 'Initialize k centroids, assign points to nearest centroid, update centroids as means, repeat until convergence. Sensitive to initialization and scale.' },
+
+{ id: 'q19', topic: 'Machine Learning', difficulty: 'Hard', time: '4–5 min',
+  q: 'Why is k-means not guaranteed to find the global optimum?',
+  a: 'It converges to local minima depending on initialization. Multiple runs (k-means++) help.' },
+
+{ id: 'q20', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'Explain curse of dimensionality in ML.',
+  a: 'As dimensions increase, data becomes sparse, distance metrics lose meaning, overfitting risk grows. Remedies: feature selection, dimensionality reduction, regularization.' },
+
+{ id: 'q21', topic: 'Machine Learning', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is one-hot encoding? When is it used?',
+  a: 'One-hot encoding converts categorical variable with k levels into k binary features. Used in models that can’t handle categories natively (linear models, neural nets).' },
+
+{ id: 'q22', topic: 'Machine Learning', difficulty: 'Hard', time: '4–5 min',
+  q: 'Why might accuracy be misleading in imbalanced datasets?',
+  a: 'A trivial model predicting the majority class yields high accuracy but fails minority. Better metrics: precision, recall, F1, PR-AUC.' },
+
+{ id: 'q23', topic: 'Machine Learning', difficulty: 'Medium', time: '3–4 min',
+  q: 'How does XGBoost improve over traditional gradient boosting?',
+  a: 'XGBoost adds regularization, efficient handling of sparse data, parallelization, tree pruning, and advanced stopping criteria, making it faster and less overfit.' },
+
+{ id: 'q24', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is early stopping in neural networks?',
+  a: 'Stop training when validation loss stops improving, preventing overfitting by halting before memorization.' },
+
+{ id: 'q25', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is dropout in neural networks?',
+  a: 'Dropout randomly disables neurons during training to prevent co-adaptation, improve generalization, acts like model averaging.' },
+
+{ id: 'q26', topic: 'Machine Learning', difficulty: 'Hard', time: '4–6 min',
+  q: 'Explain vanishing and exploding gradients in deep networks.',
+  a: 'Repeated multiplication in backprop leads to gradients shrinking (vanishing) or growing (exploding). Solutions: ReLU, careful initialization, normalization, residual connections.' },
+
+{ id: 'q27', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is batch normalization?',
+  a: 'Batch norm normalizes activations per batch (zero mean, unit variance), stabilizing gradients, speeding convergence, reducing sensitivity to initialization.' },
+
+{ id: 'q28', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'How do CNNs differ from traditional feedforward networks?',
+  a: 'CNNs use convolutional filters to capture spatial features, weight sharing reduces parameters, pooling provides translation invariance.' },
+
+{ id: 'q29', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is transfer learning?',
+  a: 'Transfer learning reuses pretrained model weights on new tasks, fine-tuning with smaller datasets, effective in vision/NLP.' },
+
+{ id: 'q30', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is reinforcement learning’s exploration vs exploitation tradeoff?',
+  a: 'Exploration tries new actions to discover rewards; exploitation chooses known best actions. Balance needed for optimal learning.' },
+
+{ id: 'q31', topic: 'Machine Learning', difficulty: 'Hard', time: '5–6 min',
+  q: 'How does Q-learning work?',
+  a: 'Q-learning updates value of state–action pairs using Bellman equation: Q(s,a)=Q(s,a)+α[r+γmax_a′ Q(s′,a′)−Q(s,a)]. Learns optimal policy via temporal-difference updates.' },
+
+{ id: 'q32', topic: 'Machine Learning', difficulty: 'Medium', time: '3–4 min',
+  q: 'What is word2vec? How does skip-gram differ from CBOW?',
+  a: 'Word2vec learns embeddings. Skip-gram predicts context from word, CBOW predicts word from context. Skip-gram better for rare words.' },
+
+{ id: 'q33', topic: 'Machine Learning', difficulty: 'Hard', time: '4–6 min',
+  q: 'Explain attention mechanism in NLP.',
+  a: 'Attention computes weighted sum of encoder hidden states, focusing on relevant context for each output. Improves sequence-to-sequence models, foundation for Transformers.' },
+
+{ id: 'q34', topic: 'Machine Learning', difficulty: 'Hard', time: '5–6 min',
+  q: 'What is the Transformer architecture and why did it replace RNNs?',
+  a: 'Transformers rely on self-attention instead of recurrence, allowing parallel computation and capturing long dependencies. Outperform RNNs in scalability and accuracy.' },
+
+{ id: 'q35', topic: 'Machine Learning', difficulty: 'Medium', time: '3–4 min',
+  q: 'What is overfitting in decision trees? How can pruning help?',
+  a: 'Deep trees memorize noise. Pruning removes branches with little predictive power, balancing bias–variance, improving generalization.' },
+
+{ id: 'q36', topic: 'Machine Learning', difficulty: 'Easy', time: '1–2 min',
+  q: 'What is k-nearest neighbors (KNN)?',
+  a: 'KNN classifies based on majority of k closest neighbors. Nonparametric, sensitive to distance metric and feature scaling.' },
+
+{ id: 'q37', topic: 'Machine Learning', difficulty: 'Medium', time: '3–4 min',
+  q: 'What is ensemble learning? Why does it work?',
+  a: 'Ensemble learning combines weak learners (bagging, boosting, stacking). Works because averaging reduces variance, sequential correction reduces bias.' },
+
+{ id: 'q38', topic: 'Machine Learning', difficulty: 'Hard', time: '5–6 min',
+  q: 'Explain stacking in ensembles.',
+  a: 'Stacking trains a meta-learner on outputs of base learners, learning optimal combination. Requires careful CV to avoid leakage.' },
+
+{ id: 'q39', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'How is dimensionality reduction different from feature selection?',
+  a: 'Feature selection keeps subset of original variables. Dimensionality reduction creates new features (PCA, autoencoders). Both fight curse of dimensionality.' },
+
+{ id: 'q40', topic: 'Machine Learning', difficulty: 'Medium', time: '3–4 min',
+  q: 'What is the role of learning rate in gradient descent?',
+  a: 'Learning rate controls step size. Too small → slow convergence. Too large → divergence/oscillation. Adaptive methods (Adam, RMSProp) tune automatically.' },
+
+{ id: 'q41', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'How does stochastic gradient descent differ from batch gradient descent?',
+  a: 'SGD updates weights per sample (noisy but fast). Batch GD updates after full dataset (stable but slow). Mini-batch is compromise.' },
+
+{ id: 'q42', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is regularization in ML?',
+  a: 'Regularization adds penalty to loss (L1, L2, dropout) to discourage overly complex models, reducing overfitting.' },
+
+{ id: 'q43', topic: 'Machine Learning', difficulty: 'Hard', time: '5–6 min',
+  q: 'Explain variational autoencoders (VAEs).',
+  a: 'VAEs are generative models learning latent variable distribution using reparameterization trick. Optimize ELBO combining reconstruction and KL divergence.' },
+
+{ id: 'q44', topic: 'Machine Learning', difficulty: 'Hard', time: '5–6 min',
+  q: 'What is GAN mode collapse? How to mitigate?',
+  a: 'Mode collapse = generator produces limited variety. Remedies: minibatch discrimination, feature matching, Wasserstein GAN with gradient penalty.' },
+
+{ id: 'q45', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is data augmentation in deep learning?',
+  a: 'Artificially increase training data by transformations (rotate, flip, crop). Improves generalization in vision/NLP.' },
+
+{ id: 'q46', topic: 'Machine Learning', difficulty: 'Medium', time: '3–4 min',
+  q: 'How to handle missing values in ML pipelines?',
+  a: 'Options: drop, mean/median impute, kNN impute, predictive models, indicator for missingness. Always fit imputer on training only.' },
+
+{ id: 'q47', topic: 'Machine Learning', difficulty: 'Hard', time: '4–6 min',
+  q: 'What is the bias introduced by target encoding? How to prevent leakage?',
+  a: 'Target encoding uses mean of target for category. If fit before splitting, leaks info. Solution: encode within CV folds or use smoothing.' },
+
+{ id: 'q48', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is feature scaling? Why important?',
+  a: 'Scaling standardizes feature magnitudes (z-score, min-max). Important for distance-based models (KNN, SVM), gradient descent convergence.' },
+
+{ id: 'q49', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is the elbow method in clustering?',
+  a: 'Plot within-cluster sum of squares vs k. The “elbow” indicates optimal k balancing fit and complexity.' },
+
+{ id: 'q50', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'What is concept drift? How do you handle it?',
+  a: 'Concept drift = data distribution changes over time, degrading model. Detect with monitoring, handle via retraining, online learning, adaptive models.' },
+
+{ id: 'q51', topic: 'Machine Learning', difficulty: 'Hard', time: '4–5 min',
+  q: 'Explain ROC vs PR curves in depth.',
+  a: 'ROC plots TPR vs FPR, insensitive to imbalance. PR plots precision vs recall, more informative for rare positives. Prefer PR-AUC in skewed data.' },
+
+{ id: 'q52', topic: 'Machine Learning', difficulty: 'Hard', time: '4–6 min',
+  q: 'What is causal inference in ML? How is it different from correlation-based prediction?',
+  a: 'Causal inference estimates effect of interventions (e.g., ATE) requiring assumptions (ignorability, unconfoundedness). Prediction models only capture associations.' },
+
+{ id: 'q53', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'Explain SHAP values for model interpretability.',
+  a: 'SHAP values allocate feature contributions fairly based on Shapley values from cooperative game theory. Additive, consistent, model-agnostic.' },
+
+{ id: 'q54', topic: 'Machine Learning', difficulty: 'Medium', time: '2–3 min',
+  q: 'How does LIME differ from SHAP?',
+  a: 'LIME approximates model locally with interpretable surrogate. SHAP uses game theory for consistent global/local explanations. SHAP more principled but heavier.' },
+
+{ id: 'q55', topic: 'Machine Learning', difficulty: 'Hard', time: '4–6 min',
+  q: 'What is meta-learning (learning to learn)?',
+  a: 'Meta-learning optimizes model training process across tasks. Few-shot learning adapts quickly with small data, methods include MAML, prototypical networks.' },
+
+{ id: 'q56', topic: 'Machine Learning', difficulty: 'Hard', time: '5–6 min',
+  q: 'What is reinforcement learning with policy gradients?',
+  a: 'Policy gradient directly optimizes πθ(a|s) by ∇θ E[R]. Methods (REINFORCE, Actor–Critic) update parameters toward actions yielding high expected reward.' }
 
       // --- Deep Learning ---
       { id: 'q7', topic: 'Deep Learning', difficulty: 'Medium', time: '3–4 min',
